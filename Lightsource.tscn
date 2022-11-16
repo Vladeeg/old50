@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://images/light.png" type="Texture" id=1]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 7
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 600, 600 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 7
+atlas = ExtResource( 1 )
+region = Rect2( 600, 0, 600, 600 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 7
+atlas = ExtResource( 1 )
+region = Rect2( 1200, 0, 600, 600 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Lightsource" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0403444, 1.4666, 0.0639125 )
+light_color = Color( 0.654902, 0.447059, 0.12549, 1 )
+light_energy = 2.06
+light_indirect_energy = 9.13
+shadow_enabled = true
+shadow_color = Color( 0.0431373, 0.0196078, 0.0588235, 1 )
+omni_range = 8.79791
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 1.45467, 0 )
+billboard = 2
+frames = SubResource( 4 )
+frame = 2
+playing = true

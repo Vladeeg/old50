@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sounds cool.wav-61b8bb3e44cb8152a5c58ce9e0559dbf.sample"
+
+[deps]
+
+source_file="res://audio/sounds cool.wav"
+dest_files=[ "res://.import/sounds cool.wav-61b8bb3e44cb8152a5c58ce9e0559dbf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

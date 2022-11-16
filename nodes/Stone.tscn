@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://images/ProjectT2.png" type="Texture" id=1]
+[ext_resource path="res://nodes/Projectile.tscn" type="PackedScene" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 7
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 600, 600 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 7
+atlas = ExtResource( 1 )
+region = Rect2( 600, 0, 600, 600 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 7
+atlas = ExtResource( 1 )
+region = Rect2( 1200, 0, 600, 600 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="SphereShape" id=5]
+radius = 0.655075
+
+[node name="Stone" instance=ExtResource( 2 )]
+velocity = 20
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="0"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+billboard = 1
+shaded = true
+frames = SubResource( 4 )
+frame = 2
+playing = true
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="1"]
+shape = SubResource( 5 )

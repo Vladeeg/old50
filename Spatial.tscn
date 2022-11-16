@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://FloorTile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SolidTile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Dungeon.tscn" type="PackedScene" id=3]
+
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Dungeon" parent="." instance=ExtResource( 3 )]
+tilemap = {
+"#": ExtResource( 2 ),
+".": ExtResource( 1 )
+}

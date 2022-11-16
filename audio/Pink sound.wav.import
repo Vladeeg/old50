@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pink sound.wav-fd2542b1fcc3bc278fbf3ffb32bc1f1c.sample"
+
+[deps]
+
+source_file="res://audio/Pink sound.wav"
+dest_files=[ "res://.import/Pink sound.wav-fd2542b1fcc3bc278fbf3ffb32bc1f1c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

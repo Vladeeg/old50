@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://images/monster 1 base.png" type="Texture" id=1]
+[ext_resource path="res://images/monster 1 base (2).png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 7
+atlas = ExtResource( 2 )
+region = Rect2( 1800, 0, 600, 600 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 7
+atlas = ExtResource( 2 )
+region = Rect2( 1200, 0, 600, 600 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 600, 600 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 23
+atlas = ExtResource( 1 )
+region = Rect2( 600, 0, 600, 600 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "Hurt",
+"speed": 11.0
+}, {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "Attack",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.45851, 0.0278454 )
+use_in_baked_light = true
+billboard = 2
+shaded = true
+frames = SubResource( 5 )
+animation = "Idle"
+playing = true

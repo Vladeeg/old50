@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Vibecheck.gd" type="Script" id=1]
+[ext_resource path="res://images/vibecheck.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 600, 600 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 600, 0, 600, 600 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 1200, 0, 600, 600 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 1800, 0, 600, 600 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Curve2D" id=6]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -374.992, -266.657, 0, 0, 0, 0, 460.175, 366.168 )
+}
+
+[sub_resource type="Curve2D" id=7]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 2380.05, -293.827, 0, 0, 0, 0, 1420.88, 359.496 )
+}
+
+[node name="Node2D" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vibecheck" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 5 )
+playing = true
+
+[node name="vibecheck2" type="AnimatedSprite" parent="."]
+position = Vector2( 1928.82, 0 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 5 )
+playing = true
+flip_h = true
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 6 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( -374.992, -266.657 )
+rotation = 0.648425
+loop = false
+
+[node name="Path2D2" type="Path2D" parent="."]
+curve = SubResource( 7 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
+position = Vector2( 2380.05, -293.827 )
+rotation = 2.54358
+loop = false

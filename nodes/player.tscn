@@ -1,0 +1,127 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scripts/player.gd" type="Script" id=1]
+[ext_resource path="res://nodes/pause_menu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UserInterface.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fonts/CutiveMono_Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://nodes/Vibecheck.tscn" type="PackedScene" id=5]
+[ext_resource path="res://images/counter.png" type="Texture" id=6]
+[ext_resource path="res://fonts/cutive_mono_72.tres" type="DynamicFont" id=7]
+[ext_resource path="res://audio/shoot.wav" type="AudioStream" id=8]
+[ext_resource path="res://audio/Hit_Hurt.wav" type="AudioStream" id=9]
+[ext_resource path="res://audio/door.wav" type="AudioStream" id=10]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.5
+
+[sub_resource type="Environment" id=2]
+background_color = Color( 0.952941, 0.313726, 0.956863, 1 )
+ambient_light_color = Color( 0.301961, 0.0941176, 0.0941176, 1 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 4 )
+
+[node name="player" type="KinematicBody" groups=["player"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+script = ExtResource( 1 )
+HP_drain_rate = 5
+
+[node name="cshape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="pivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+
+[node name="camera" type="Camera" parent="pivot"]
+environment = SubResource( 2 )
+current = true
+
+[node name="RayCast" type="RayCast" parent="pivot/camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -1000 )
+
+[node name="OmniLight" type="OmniLight" parent="pivot/camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.904266 )
+light_color = Color( 0.705882, 0.0352941, 0.980392, 1 )
+light_energy = 2.96
+shadow_enabled = true
+
+[node name="pause_menu" parent="." instance=ExtResource( 2 )]
+
+[node name="UserInterface" parent="." instance=ExtResource( 3 )]
+
+[node name="TextureProgress" parent="UserInterface" index="0"]
+visible = false
+
+[node name="Vibecheck" parent="UserInterface" instance=ExtResource( 5 )]
+
+[node name="HUD" type="VBoxContainer" parent="UserInterface"]
+margin_left = 64.0192
+margin_top = 825.833
+margin_right = 240.019
+margin_bottom = 972.833
+grow_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Counter" type="Label" parent="UserInterface/HUD"]
+margin_right = 176.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 7 )
+text = "0/10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Map" type="Label" parent="UserInterface/HUD"]
+margin_top = 84.0
+margin_right = 176.0
+margin_bottom = 147.0
+grow_vertical = 0
+custom_fonts/font = SubResource( 3 )
+text = "###
+# #
+###"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="UserInterface"]
+position = Vector2( 263.278, 980.839 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="DoorMsg" type="Label" parent="UserInterface"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 566.0
+margin_top = 279.0
+margin_right = 1402.0
+margin_bottom = 359.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = ExtResource( 7 )
+text = "THE DOOR HAS OPENED"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = 3.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="UserInterface/Gun" to="." method="_on_Gun_animation_finished"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="UserInterface"]

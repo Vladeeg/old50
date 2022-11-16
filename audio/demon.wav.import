@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/demon.wav-93a6fa7515048b8e17765e1e94df29be.sample"
+
+[deps]
+
+source_file="res://audio/demon.wav"
+dest_files=[ "res://.import/demon.wav-93a6fa7515048b8e17765e1e94df29be.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

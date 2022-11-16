@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://nodes/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://nodes/test_cube.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nodes/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://nodes/gizmo_cube.tscn" type="PackedScene" id=4]
+[ext_resource path="res://nodes/trigger_area.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/test.gd" type="Script" id=12]
+
+[node name="Level" type="Spatial"]
+script = ExtResource( 12 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+
+[node name="test_cube" parent="." instance=ExtResource( 2 )]
+transform = Transform( 15, 0, 0, 0, 1, 0, 0, 0, 15, 0, -1, 0 )
+
+[node name="test_cube2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2, 0, 0, 0, 1.41421, -1.41421, 0, 1.41421, 1.41421, -6.40781, -0.2302, -4.78365 )
+
+[node name="test_cube3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2, 0, 0, 0, 1, -1.73205, 0, 1.73205, 1, -10.7083, 0.610714, -4.78365 )
+
+[node name="shrine" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0014, 1, 10.0247 )
+one_shot = true
+
+[node name="gizmo_cube" parent="shrine" instance=ExtResource( 4 )]
+
+[node name="shrine2" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0668, 1, -2.95514 )
+one_shot = true
+
+[node name="gizmo_cube" parent="shrine2" instance=ExtResource( 4 )]
+
+[node name="shrine3" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.98478, 1, 11.2312 )
+one_shot = true
+
+[node name="gizmo_cube" parent="shrine3" instance=ExtResource( 4 )]
+
+[node name="Enemy" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.10013, 1.19612, 0 )
+[connection signal="player_entered" from="shrine" to="player" method="_on_shrine_player_entered"]
+[connection signal="player_exited" from="shrine" to="player" method="_on_shrine_player_exited"]
+[connection signal="player_entered" from="shrine2" to="player" method="_on_shrine_player_entered"]
+[connection signal="player_exited" from="shrine2" to="player" method="_on_shrine_player_exited"]
+[connection signal="player_entered" from="shrine3" to="player" method="_on_shrine_player_entered"]
+[connection signal="player_exited" from="shrine3" to="player" method="_on_shrine_player_exited"]
+
+[editable path="player"]
